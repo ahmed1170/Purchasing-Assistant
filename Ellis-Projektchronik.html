@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Projektchronik des lokalen Einkaufsassistenten Ellis vom ersten Prototyp bis zur Übergabe.">
+  <title>Ellis – Projektchronik</title>
+  <style>
+    :root{color-scheme:light;--paper:#f7f4ee;--card:#fffdf9;--ink:#22201e;--muted:#5d5751;--line:#ded6c9;--accent:#843d25;--soft:#f3e4da;--hero:#241f1b}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Segoe UI",Arial,sans-serif}
+    a{color:var(--accent);text-underline-offset:3px}
+    a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+    .wrap{width:min(100% - 40px,1000px);margin-inline:auto}
+    .hero{background:radial-gradient(ellipse at 88% 120%,#683c2d 0,transparent 67%),var(--hero);color:#fffaf5;padding:clamp(38px,8vw,92px) 0 40px}
+    .hero .kicker{font-weight:650;color:#ffd2bb;letter-spacing:.09em;text-transform:uppercase;font-size:.8rem}
+    h1,h2,h3,p{margin:0}
+    h1{font-family:Georgia,serif;font-size:clamp(2.55rem,7vw,5rem);font-weight:400;line-height:1.04;letter-spacing:-.04em;margin:.13em 0 .25em}
+    .hero p{max-width:63ch;color:#f1e2d8}
+    nav{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px 22px}
+    nav a{color:#fff0e6;font-size:.9rem}
+    nav a:focus-visible{outline-color:#ffd2bb}
+    main{padding-block:46px 64px}
+    h2{font-family:Georgia,serif;font-size:clamp(1.75rem,4vw,2.3rem);font-weight:400;line-height:1.2;letter-spacing:-.025em}
+    .intro{color:var(--muted);max-width:70ch;margin:10px 0 24px}
+    .timeline{padding:0;list-style:none;margin:0;counter-reset:step;position:relative}
+    .timeline::before{content:"";position:absolute;top:24px;bottom:24px;left:19px;width:1px;background:var(--line)}
+    .timeline>li{counter-increment:step;position:relative;margin:0 0 13px;padding-left:54px;scroll-margin-top:16px}
+    .timeline>li::before{content:counter(step,decimal-leading-zero);position:absolute;top:13px;left:0;width:39px;height:39px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:.78rem;font-weight:650;font-variant-numeric:tabular-nums}
+    article{padding:16px 19px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+    .step-head{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
+    h3{font-size:1.12rem;line-height:1.35;letter-spacing:-.012em}
+    .highlight{color:var(--muted);font-size:.94rem}
+    details{margin-top:11px}
+    summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:10px;padding:5px 11px;border-radius:6px;background:var(--soft);color:var(--accent);font-size:.86rem;font-weight:650}
+    summary::-webkit-details-marker{display:none}
+    summary:hover{background:#ead3c5}
+    summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-top:-3px}
+    details[open]>summary::after{transform:rotate(225deg);margin-top:3px}
+    dl{margin:12px 0 0;display:grid;grid-template-columns:7rem minmax(0,1fr);gap:7px 12px;padding-top:12px;border-top:1px solid var(--line);font-size:.94rem}
+    dt{font-weight:650}
+    dd{margin:0}
+    @media(max-width:570px){
+      .wrap{width:calc(100% - 28px)}
+      main{padding-top:30px}
+      .timeline::before{left:14px}
+      .timeline>li{padding-left:39px}
+      .timeline>li::before{width:29px;height:29px;top:15px;font-size:.68rem}
+      article{padding:13px}
+      dl{grid-template-columns:1fr;gap:3px}
+      dd+dt{margin-top:5px}
+    }
+    @media print{
+      :root{--paper:#fff;--card:#fff;--line:#bbb;--ink:#111;--muted:#333}
+      .wrap{width:auto}
+      .hero{background:#fff;color:#111;padding:0 0 16px}
+      .hero p,.hero .kicker{color:#333}
+      h1{font-size:34pt}
+      nav,summary{display:none}
+      main{padding:10px 0}
+      .timeline>li{break-inside:avoid}
+      .timeline>li::before{border-color:#bbb}
+      article{border:0;padding:8px 0}
+      .intro,dl{font-size:10pt}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="kicker">Purchasing Assistant</p>
+      <h1>Projektchronik Ellis</h1>
+      <p>Vom ersten Einkaufsagenten über konkrete Fehlerfälle bis zur vorführbaren Windows-Abgabe. Die Timeline fasst zusammen, was beauftragt, geändert und tatsächlich geprüft wurde.</p>
+      <nav aria-label="Direkt zu einer Projektphase">
+        <a href="#timeline">Projektbeginn</a>
+        <a href="#bewertung">Bewertungslogik</a>
+        <a href="#originale">Praxisfälle</a>
+        <a href="#sicherheit">Sicherheitscheck</a>
+        <a href="#uebergabe">Übergabe</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <section id="timeline" aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Der Ablauf Schritt für Schritt</h2>
+      <p class="intro">Die Schritte folgen der Reihenfolge im Projektchat. Mehrere Korrekturschleifen sind je Thema gebündelt. Über „Auftrag ansehen“ öffnet sich der jeweilige Abschnitt.</p>
+      <ol class="timeline" role="list">
+        <li>
+          <article aria-labelledby="step-01">
+            <div class="step-head"><h3 id="step-01">Den Einkaufsagenten aufsetzen</h3><p class="highlight">Lokale Weboberfläche, Modellanbindung und SQLite als Grundlage.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Die Trinity-Vorlage auf die Beschaffung übertragen. Der Agent soll Bedarfe verstehen, PDFs auswerten, Lieferanten suchen und eine begründete Empfehlung liefern.</dd>
+              <dt>Umsetzung</dt><dd>FastAPI, SQLite, eine eigene Weboberfläche und Codex-Anbindung. Das Modell strukturiert Bedarf und Belege. Der Programmcode prüft Muss-Kriterien und berechnet Punkte. Anfänglich galten 40 % Preis, 30 % Qualität, 20 % Lieferzeit und 10 % Entfernung.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-02">
+            <div class="step-head"><h3 id="step-02">Unvollständige Bedarfe und Windows-Start</h3><p class="highlight">Kandidaten bleiben auch mit offenen Angaben sichtbar.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Mit erkennbaren Produkten weiterarbeiten, Rückfragen gezielt stellen und die vorhandene Codex-CLI auch bei fehlendem PATH-Eintrag finden.</dd>
+              <dt>Umsetzung</dt><dd>Belegte Preise und andere Vergleichsdaten können vorläufig angezeigt werden. Offene Nachweise bleiben sichtbar, nachweisliche Abweichungen werden gekennzeichnet. Das Windows-Startskript prüft lokale Codex-Installationen und berücksichtigt eine manuelle Pfadangabe.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-03">
+            <div class="step-head"><h3 id="step-03">Eine Suche als Chat führen</h3><p class="highlight">Bedarf, Anhänge und Ergebnisse gehören zu einer fortsetzbaren Suche.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Lieferort, Menge oder technische Merkmale im selben Chat ergänzen und gespeicherte Suchen wieder öffnen. Reine Rückfragen sollen eine kurze Antwort bekommen.</dd>
+              <dt>Umsetzung</dt><dd>Chronologischer Chatverlauf mit gespeicherten Berichten, fortsetzbaren Suchen und gezielter Nachrecherche. Die Anbindung der Folgenachrichten wurde in späteren Schleifen weiter verbessert.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-04">
+            <div class="step-head"><h3 id="step-04">PDFs einzeln prüfen und richtig auslesen</h3><p class="highlight">Dateistatus, Seitenbelege und Zuordnung zur Artikelvariante.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Fehlerhafte Uploads einzeln behandeln und technische Tabellen so lesen, dass Preis, Packungsgröße und Merkmale aus derselben Artikelzeile stammen.</dd>
+              <dt>Umsetzung</dt><dd>Einzelne Anhänge lassen sich hinzufügen und entfernen. Ellis prüft lesbare Seiten, nennt Fundstellen und trennt Preisbasis von Verpackungseinheit. Listenpreise behalten ihren Zeitbezug. Eine Leistungserklärung für eine Produktfamilie wird nur bei belegter Zuordnung auf einen konkreten Artikel übertragen.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-05">
+            <div class="step-head"><h3 id="step-05">PDF-Belege, Shopdaten und Entfernung verbinden</h3><p class="highlight">Artikelnummern führen zur passenden Produktseite. Ortsdaten führen zur Strecke.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Fehlende Angebotsdaten gezielt nachrecherchieren, bereits gefundene Belege wiederverwenden und Standort sowie Preisquelle im Bericht nachvollziehbar machen.</dd>
+              <dt>Umsetzung</dt><dd>Produktdetailseiten und eindeutig zugeordnete Shopkarten können Preise belegen. Die Standortsuche bevorzugt den Versandstandort, dann eine belegte nahe Filiale und danach den Firmensitz. Ellis kann Adressen bis auf Stadt und Land vereinfachen und bei Routingausfall eine gekennzeichnete Luftlinie berechnen.</dd>
+              <dt>Grenze</dt><dd>Firmensitz und Filiale sind nur dann Versandstandorte, wenn die Quelle das belegt. Straßenentfernung und Luftlinie werden getrennt bewertet.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li id="bewertung">
+          <article aria-labelledby="step-06">
+            <div class="step-head"><h3 id="step-06">Die Bewertung auf zwei Kriterien vereinfachen</h3><p class="highlight">80 % Materialpreis und 20 % Entfernung als anpassbare Standardgewichte.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Qualität und Lieferzeit aus der Punktewertung nehmen. Materialpreise für die benötigte Menge berechnen und mit dem Entfernungswert zu einer Empfehlung zusammenführen.</dd>
+              <dt>Umsetzung</dt><dd>Ellis vergleicht Warenpreise auf gemeinsamer Mengen-, Währungs- und Steuerbasis. Je nach Gebinde wird auf ganze Bestelleinheiten aufgerundet. Versandkosten sind für die Materialpreiswertung entbehrlich. Ohne Preis sind bei Standardgewichten maximal 20 Punkte bewertbar. Die Bewertungsregeln wurden danach mehrfach angepasst, damit der beste positive Preis nicht automatisch die volle Teilpunktzahl erhält.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-07">
+            <div class="step-head"><h3 id="step-07">Den Chat und die Ergebnistabelle aufräumen</h3><p class="highlight">Eine Ergebnisliste mit Lieferant, Preis, Entfernung und Punkten.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Den Chat zur Hauptansicht machen, Wiederholungen reduzieren, eine dunkle Oberfläche entwerfen und den Agenten erstmals als ZIP weitergeben.</dd>
+              <dt>Umsetzung</dt><dd>Der Eingabebereich bleibt unten erreichbar. Die Angebote stehen in einer Tabelle mit aufklappbaren Belegen. Gespeicherte Suchen und Einstellungen sind über die Seitenleiste erreichbar. Eine erste ZIP mit Startanleitung wurde erstellt.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-08">
+            <div class="step-head"><h3 id="step-08">Rückfragen und Variantenwahl verbessern</h3><p class="highlight">Bei groben Bedarfen kurz eingrenzen, bevor die breite Suche beginnt.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Bei Bedarf eine oder zwei konkrete Auswahlfragen mit sinnvollen Optionen stellen. Die Frage soll je nach Material beispielsweise Maße, Legierung oder Ausführung betreffen.</dd>
+              <dt>Umsetzung</dt><dd>Rückfragen und Gruppierung nach Lieferant wurden nach Wiederholungstests nachgeschärft. Belastbare Produktdaten sollten passende, offene und abweichende Varianten erkennbar trennen. Der PDF-Pfad wurde mit weiteren Materialien und Dokumenten erprobt.</dd>
+              <dt>Lernpunkt</dt><dd>Ein lesbares PDF kann technisch passende Produkte enthalten, ohne einen vergleichbaren Preis oder einen Versandstandort zu nennen. Solche Angaben bleiben offen und werden mit einem konkreten Grund angezeigt.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li>
+          <article aria-labelledby="step-09">
+            <div class="step-head"><h3 id="step-09">Eine Karte integrieren und die Bedienung verfeinern</h3><p class="highlight">Dunkle Kartenvorschau mit Lieferanten, Empfehlung und Lieferort.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Die wichtigsten Standorte auf einer einzigen aufklappbaren Karte anzeigen und das Interface auf den Chat konzentrieren.</dd>
+              <dt>Umsetzung</dt><dd>Ellis zeigt die Karte bei den oberen Ergebnissen, markiert den Lieferort separat und kennzeichnet die Empfehlung mit einem kleinen Stern. Die Eingabe wurde zu einem kompakten Balken. PDF-Anhänge öffnen sich auf Klick, gespeicherte Suchen bleiben zunächst eingeklappt. Die Angebotssuche ist für neue Suchen standardmäßig aus.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li id="originale">
+          <article aria-labelledby="step-10">
+            <div class="step-head"><h3 id="step-10">Zwei Praxisfälle bis zur Berechnung prüfen</h3><p class="highlight">M8-Preisstaffeln und ein Rollenpreis wurden aus konkreten Belegen nachgerechnet.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Fehlende Preise und zwei fehlende Firmenstandorte aus den jüngsten Testfällen beheben.</dd>
+              <dt>M8-Praxisfall</dt><dd>Für 1.000 Sechskantmuttern übernahm Ellis aus drei PDFs die Warenwerte 15,20 €, 16,40 € und 70,00 € brutto. Ein Wiederholungslauf nutzte echtes Codex. Anschließend wurden die zwei fehlenden Firmenstandorte aus offiziellen Impressen belegt und mit ca. 46,24 km und 129,22 km nach Stuttgart im gespeicherten Vergleich ergänzt.</dd>
+              <dt>Rollen-Praxisfall</dt><dd>Für 30 m Schrumpfschlauch berechnete Ellis aus der bestätigten Variante sechs Rollen à 5 m zu 18,11 €, insgesamt 108,66 € brutto. Der gezielte Abruf war erfolgreich. Eine allgemeine Websuche hatte denselben Anbieter in einem Kontrolllauf ausgelassen.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li id="sicherheit">
+          <article aria-labelledby="step-11">
+            <div class="step-head"><h3 id="step-11">Den Sicherheitscheck dokumentieren</h3><p class="highlight"><time datetime="2026-11-25">25. November 2026</time> · 155 automatische Tests bestanden, ergänzt um gezielte Prüfungen.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Den Agenten vor der Weitergabe prüfen und einen Bericht erstellen. Der laufende Agent soll unverändert bleiben.</dd>
+              <dt>Durchgeführt</dt><dd>Lokaler Zugriffsschutz, Adressvalidierung bei Webabrufen, PDF-Fehlerfälle, Paketabhängigkeiten und ZIP-Inhalt wurden geprüft. In zwei Stichproben mit echtem Codex gelangte eine sachfremde Anweisung aus einem PDF oder einer Webseite nicht in die übernommenen Angebotsdaten.</dd>
+              <dt>Offen</dt><dd>Für vertrauliche Daten oder Mehrnutzerbetrieb bleiben Fragen zur Weitergabe von Suchbegriffen, zum Löschkonzept und zur Zugriffstrennung. Der Check meldete außerdem bekannte Schwachstellen im lokal installierten Paketinstaller. Der separate Prüfbericht wurde auch als Word-Datei erstellt.</dd>
+            </dl></details>
+          </article>
+        </li>
+        <li id="uebergabe">
+          <article aria-labelledby="step-12">
+            <div class="step-head"><h3 id="step-12">Die Windows-Abgabe vorbereiten</h3><p class="highlight">Startanleitung und Startdatei liegen sichtbar oben, die Software im Ordner „Agent“.</p></div>
+            <details><summary>Auftrag ansehen</summary><dl>
+              <dt>Auftrag</dt><dd>Eine aufgeräumte ZIP zum Weitergeben erstellen.</dd>
+              <dt>Durchgeführt</dt><dd>Die ZIP wurde entpackt und die Windows-Startdatei aus einem Testordner mit Leerzeichen ausprobiert. Mit einer vorhandenen Python-Umgebung waren die Startseite erreichbar, Codex erkannt und die neu angelegte Datenbank leer. Eine Neuinstallation auf einem fremden Rechner wurde nicht geprüft.</dd>
+              <dt>Ergebnis</dt><dd>Die Abgabe enthält die Software und die Startanleitung. Empfänger beginnen mit einer leeren Suchhistorie und nutzen ihre eigene Modellanmeldung.</dd>
+            </dl></details>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </main>
+  <script>
+    let closedForPrint = [];
+    window.addEventListener("beforeprint", () => {
+      closedForPrint = Array.from(document.querySelectorAll("details:not([open])"));
+      closedForPrint.forEach(step => { step.open = true; });
+    });
+    window.addEventListener("afterprint", () => {
+      closedForPrint.forEach(step => { step.open = false; });
+      closedForPrint = [];
+    });
+  </script>
+</body>
+</html>
